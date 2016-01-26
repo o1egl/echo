@@ -7,8 +7,6 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/labstack/gommon/log"
-
 	"net/url"
 
 	"bytes"
@@ -50,7 +48,7 @@ type (
 		NoContent(int) error
 		Redirect(int, string) error
 		Error(err error)
-		Logger() *log.Logger
+		Logger() Logger
 		X() *context
 	}
 
@@ -337,7 +335,7 @@ func (c *context) Error(err error) {
 }
 
 // Logger returns the `Logger` instance.
-func (c *context) Logger() *log.Logger {
+func (c *context) Logger() Logger {
 	return c.echo.logger
 }
 
